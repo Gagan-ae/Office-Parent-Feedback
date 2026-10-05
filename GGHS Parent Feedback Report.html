@@ -1,0 +1,196 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>GGHS Parent Feedback Report</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single reading column like a school register page; the chart and the follow-up list break out to full width. */
+:root{
+  --bg:#f6f8fa; --surface:#ffffff; --ink:#14212e; --ink2:#4a5a6a; --line:#d9e0e7;
+  --accent:#0e5a6b; --accent-soft:#e2eef0;
+  --r1:#c0392b; --r2:#e8956b; --r3:#c5c9cd; --r4:#2a78d6;
+  --p1:#c0392b; --p2:#b9670f; --p3:#5d6b78;
+  --display:"Bricolage Grotesque","Trebuchet MS",sans-serif; --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171c; --surface:#1a2129; --ink:#eef2f5; --ink2:#a9b6c2; --line:#2e3944;
+  --accent:#6cc3d3; --accent-soft:#1d333a;
+  --r1:#e05a4c; --r2:#c9764e; --r3:#56616c; --r4:#3987e5;
+  --p1:#ef7b6e; --p2:#e0a050; --p3:#a9b6c2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171c; --surface:#1a2129; --ink:#eef2f5; --ink2:#a9b6c2; --line:#2e3944;
+  --accent:#6cc3d3; --accent-soft:#1d333a;
+  --r1:#e05a4c; --r2:#c9764e; --r3:#56616c; --r4:#3987e5;
+  --p1:#ef7b6e; --p2:#e0a050; --p3:#a9b6c2; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-inline:16px;padding-block:32px 64px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+.col{max-width:68ch}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px);font-weight:700}
+h2{font-size:24px;font-weight:700}
+h3{font-size:16px;font-weight:700}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.sub{color:var(--ink2)}
+section{display:flex;flex-direction:column;gap:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border-block:1px solid var(--line)}
+.stat{padding:14px 16px 14px 0}
+.stat b{display:block;font-family:var(--display);font-size:30px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{color:var(--ink2);font-size:13px}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--ink2)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.chart{display:grid;grid-template-columns:minmax(120px,210px) minmax(0,1fr) 44px;gap:6px 12px;align-items:center;font-size:13px}
+.chart .lab{text-align:right;line-height:1.2}
+.chart .avg{font-variant-numeric:tabular-nums;font-weight:600}
+.chart .hd{color:var(--ink2);font-size:12px}
+.bar{display:flex;gap:2px;height:20px}
+.bar div{min-width:0;border-radius:2px;font-size:11px;line-height:20px;text-align:center;overflow:hidden;font-variant-numeric:tabular-nums}
+.s1{background:var(--r1);color:#fff}.s2{background:var(--r2);color:#111}.s3{background:var(--r3);color:var(--ink)}.s4{background:var(--r4);color:#fff}
+.bar div:hover{outline:2px solid var(--ink)}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:6px 9px;border-radius:4px;font-size:12px;z-index:9;max-width:240px}
+.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.act{border-top:3px solid var(--accent);padding-top:10px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.act .meta{font-size:12.5px;color:var(--ink2)}
+.act ul{font-size:14px;gap:5px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.controls input,.controls select,.controls button{font:inherit;font-size:14px;padding:7px 10px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--ink);max-width:100%}
+.controls button{background:var(--accent);color:var(--bg);border-color:var(--accent);cursor:pointer;font-weight:600}
+.controls :focus-visible,.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tabs button{font:inherit;font-size:13.5px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:760px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);font-weight:600;position:sticky;top:0;background:var(--surface)}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.P1{color:var(--p1)}.P2{color:var(--p2)}.P3{color:var(--p3)}
+.chip{display:inline-block;margin:0 4px 4px 0;padding:1px 7px;border-radius:3px;font-size:12px;background:var(--accent-soft);color:var(--ink)}
+.chip b{font-variant-numeric:tabular-nums}
+.chip.lo{background:transparent;border:1px solid var(--r1)}
+.dim{color:var(--ink2);font-size:12.5px}
+.note{border-left:3px solid var(--line);padding-left:14px;color:var(--ink2);font-size:14px}
+@media (max-width:560px){.chart{grid-template-columns:minmax(0,1fr) 40px}.chart .lab{grid-column:1/-1;text-align:left;margin-top:6px;font-weight:500}.chart .hd.lab{display:none}}
+</style>
+<div class="wrap">
+<header class="col" style="display:flex;flex-direction:column;gap:10px">
+  <div class="eyebrow">GGHS · Parent Feedback Form · 10 March 2026</div>
+  <h1>Parents are satisfied overall, with clear gaps in international exposure, learning apps and uniform</h1>
+  <p class="sub">118 responses across 18 areas, each rated 1 (lowest) to 4 (highest). This report covers what the ratings show, what to do about it, and the list of parents who gave a rating of 3 or below.</p>
+</header>
+
+<section>
+  <div class="stats">
+    <div class="stat"><b>3.52 / 4</b><span>average rating across all areas</span></div>
+    <div class="stat"><b>62%</b><span>of all ratings were the top score of 4</span></div>
+    <div class="stat"><b>97 of 118</b><span>parents gave at least one rating of 3 or below</span></div>
+    <div class="stat"><b>55</b><span>parents gave at least one rating of 1 or 2</span></div>
+    <div class="stat"><b>21</b><span>parents averaged 3.0 or below</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="col" style="display:flex;flex-direction:column;gap:8px">
+    <h2>How each area was rated</h2>
+    <p class="sub">Areas are sorted from weakest to strongest. Each bar shows how many of the 118 parents gave each score.</p>
+  </div>
+  <div class="panel" style="display:flex;flex-direction:column;gap:14px">
+    <div class="legend"><span><i style="background:var(--r1)"></i>1</span><span><i style="background:var(--r2)"></i>2</span><span><i style="background:var(--r3)"></i>3</span><span><i style="background:var(--r4)"></i>4 (highest)</span></div>
+    <div class="chart" id="chart"></div>
+  </div>
+  <div class="col"><ul>
+    <li><b>International collaborations is the weakest area (3.12).</b> 25 parents (21%) rated it 1 or 2, and only 49 gave it a 4. Ten parents gave it the lowest score.</li>
+    <li><b>Learning apps (Accadly, Go Sharpner, SHIN) come second (3.27).</b> 18 parents rated them 1 or 2. Academics is the lowest-scoring group overall (3.40) because of these two areas; curriculum delivery (3.64) and books (3.58) score well.</li>
+    <li><b>Uniform arrangements (3.36)</b> drew 8 ratings of 1, the second-highest count of bottom scores for any area.</li>
+    <li><b>Sports (3.42), ERP / Parent App (3.46), transport (3.47) and communication (3.48)</b> form a second band, each with 11 to 14 parents rating 1 or 2.</li>
+    <li><b>Strongest areas:</b> cleanliness (3.68), infrastructure (3.65), curriculum, security and staff support (3.64 each).</li>
+    <li><b>Communication tracks the overall rating most closely.</b> Of all 17 specific areas, a parent's communication score is the one most strongly related to their "overall school environment" score (correlation 0.61); infrastructure, cleanliness and security are the least related (0.34).</li>
+  </ul></div>
+</section>
+
+<section class="col">
+  <h2>What the data says about the parents</h2>
+  <ul>
+    <li><b>Most parents are content.</b> 63 parents (53%) gave no rating below 3, and 21 gave 4 in every area.</li>
+    <li><b>Dissatisfaction is concentrated.</b> 12 parents (10%) gave five or more ratings of 1 or 2, and together they account for 86 of the 163 low ratings (53%). Resolving their concerns individually would remove half of the low scores.</li>
+    <li><b>The largest group is lukewarm.</b> 39 parents gave only 3s and 4s. They are not unhappy, but 30% of all ratings were a 3, so there is room to move them to 4.</li>
+    <li><b>Child safety needs individual attention.</b> 4 parents rated security and child safety 1 or 2. The number is small, but each case should be heard personally. Filter the list below by "Security &amp; child safety".</li>
+    <li><b>Three parents marked 3 for every question</b> (Kalpak Dasgupta, Niresh Mehta, Ashwani Kumar Singh). This may be a quick fill rather than a considered view, so a short call will tell more than the form.</li>
+  </ul>
+  <p class="note">Limits of this data: the form has no comment field in use (the last column is empty) and no class or section, so it shows where parents are unhappy but not why, and it cannot be split by grade. All responses came in on one day between 08:35 and 14:03. Six phone numbers submitted twice; five of those pairs have different ratings (possibly two children), so all 118 responses are kept and the repeats are marked in the list. The scale is read as 4 = best, which fits the response pattern.</p>
+</section>
+
+<section>
+  <div class="col" style="display:flex;flex-direction:column;gap:8px">
+    <h2>Measures to take</h2>
+    <p class="sub">Because the form does not record reasons, the first step in every area is to ask. The actions below are ordered by how many parents each one affects.</p>
+  </div>
+  <div class="actions">
+    <div class="act"><h3>1. Call the 21 Priority 1 parents within a week</h3><div class="meta">Owner: Principal / coordinators · Affects the 21 parents averaging 3.0 or below</div><ul><li>A senior staff member calls each parent, starting with those who gave the most ratings of 1 or 2.</li><li>Record the specific complaint, the child's class, and what was promised, in one shared sheet.</li><li>Call back within 15 days to confirm the issue is closed.</li></ul></div>
+    <div class="act"><h3>2. International collaborations</h3><div class="meta">Owner: Academic head · 69 parents rated 3 or below</div><ul><li>Check how many students actually took part this year. A low score here often means most children were never included.</li><li>Publish a calendar of exchanges and virtual sessions, with a rotation so every class takes part at least once a year.</li><li>Share photos and student work from each session with all parents, not only the participants'.</li></ul></div>
+    <div class="act"><h3>3. Learning apps</h3><div class="meta">Owner: IT / academic coordinators · 62 parents rated 3 or below</div><ul><li>Ask low-rating parents which app is the problem: login trouble, too much screen time, or unclear benefit.</li><li>Run a short parent orientation, and send a one-page guide for each app.</li><li>Send a monthly usage and progress summary per child so parents see the value.</li><li>Review any app with low usage before renewing it.</li></ul></div>
+    <div class="act"><h3>4. Uniform arrangements</h3><div class="meta">Owner: Admin office · 52 parents rated 3 or below, 8 gave the lowest score</div><ul><li>Find out whether the issue is price, quality, stock and sizes, or the vendor's service.</li><li>Agree stock levels and exchange terms with the vendor before the new session.</li><li>Hold a uniform counter at school on fixed dates and announce it early.</li></ul></div>
+    <div class="act"><h3>5. Communication, responsiveness and the Parent App</h3><div class="meta">Owner: Front office / MIS · About 50 parents rated each of these 3 or below</div><ul><li>Set a response standard, for example every parent query acknowledged within one working day, and track it.</li><li>Name one contact person per class for parent queries.</li><li>Collect the specific ERP / Parent App faults from low-rating parents and raise them with the vendor.</li><li>Use one official channel for circulars so parents do not miss notices. This area has the strongest link to how parents rate the school overall.</li></ul></div>
+    <div class="act"><h3>6. Sports and transport</h3><div class="meta">Owner: Sports head, transport in-charge · 53 and 46 parents rated 3 or below</div><ul><li>Sports: share the weekly games timetable, and check that every child, not only team players, gets regular play and coaching time.</li><li>Transport: ask the 14 low-rating parents for their route and the issue (timing, crowding, staff behaviour, tracking), then fix it route by route.</li></ul></div>
+    <div class="act"><h3>7. Security and child safety cases</h3><div class="meta">Owner: Principal · 4 parents rated 1 or 2</div><ul><li>Meet each of these parents in person and document the concern and the action taken.</li><li>Treat any specific incident raised under the school's child protection procedure.</li></ul></div>
+    <div class="act"><h3>8. Improve the next survey</h3><div class="meta">Owner: MIS</div><ul><li>Add student name, class and section, and a "what should we improve?" comment box.</li><li>Ask for a reason whenever a parent chooses 1 or 2.</li><li>Allow one response per child, and repeat the survey each term to measure change against these scores.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <div class="col" style="display:flex;flex-direction:column;gap:8px">
+    <h2>Parents who gave a rating of 3 or below</h2>
+    <p class="sub">97 parents gave 3 or less in at least one area. They are grouped by urgency so the follow-up calls can start with the most dissatisfied. Outlined chips are ratings of 1 or 2.</p>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search name or phone" aria-label="Search name or phone">
+    <select id="area" aria-label="Filter by area"></select>
+    <select id="lvl" aria-label="Rating level"><option value="3">Rated 3 or below in this area</option><option value="2">Rated 1 or 2 in this area</option></select>
+    <button id="copy" type="button">Copy list for Excel</button>
+    <span class="dim" id="count"></span>
+  </div>
+  <div class="tw"><table><thead><tr><th>#</th><th>Parent</th><th>Phone</th><th>Priority</th><th>Avg</th><th>Rated 1 or 2</th><th>Rated 3</th></tr></thead><tbody id="tb"></tbody></table></div>
+</section>
+</div>
+<div id="tip" hidden></div>
+<script>
+const D={"areas":[{"name":"Curriculum & syllabus","group":"Academics","avg":3.64,"c":[1,5,30,82],"low":6,"le3":36},{"name":"Books & resources","group":"Academics","avg":3.58,"c":[3,3,35,77],"low":6,"le3":41},{"name":"International collaborations","group":"Academics","avg":3.12,"c":[10,15,44,49],"low":25,"le3":69},{"name":"Learning apps","group":"Academics","avg":3.27,"c":[6,12,44,56],"low":18,"le3":62},{"name":"Infrastructure","group":"Campus & safety","avg":3.65,"c":[1,2,34,81],"low":3,"le3":37},{"name":"Cleanliness & hygiene","group":"Campus & safety","avg":3.68,"c":[0,6,26,86],"low":6,"le3":32},{"name":"Security & child safety","group":"Campus & safety","avg":3.64,"c":[3,1,31,83],"low":4,"le3":35},{"name":"Transport","group":"Campus & safety","avg":3.47,"c":[3,11,32,72],"low":14,"le3":46},{"name":"Sports","group":"Co-curricular","avg":3.42,"c":[2,11,40,65],"low":13,"le3":53},{"name":"Cultural activities","group":"Co-curricular","avg":3.61,"c":[0,6,34,78],"low":6,"le3":40},{"name":"Creativity & participation","group":"Co-curricular","avg":3.58,"c":[2,4,36,76],"low":6,"le3":42},{"name":"Overall environment","group":"Co-curricular","avg":3.63,"c":[2,2,34,80],"low":4,"le3":38},{"name":"Administrative support","group":"Administration & communication","avg":3.59,"c":[2,3,36,77],"low":5,"le3":41},{"name":"ERP / Parent App","group":"Administration & communication","avg":3.46,"c":[3,8,39,68],"low":11,"le3":50},{"name":"Communication","group":"Administration & communication","avg":3.48,"c":[2,9,37,70],"low":11,"le3":48},{"name":"Responsiveness to queries","group":"Administration & communication","avg":3.56,"c":[4,3,34,77],"low":7,"le3":41},{"name":"Staff support","group":"Administration & communication","avg":3.64,"c":[2,1,34,81],"low":3,"le3":37},{"name":"Uniform arrangements","group":"Administration & communication","avg":3.36,"c":[8,7,37,66],"low":15,"le3":52}],"parents":[{"n":"Kavita Kanwar","p":"7827475734","t":"08:35","avg":3.83,"tier":"B","dup":false,"r":[4,4,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Deepak Bharti","p":"9717776532","t":"08:44","avg":3.0,"tier":"A","dup":false,"r":[4,4,4,4,4,4,1,4,1,3,2,3,2,3,3,3,4,1]},{"n":"Amit Goyal","p":"9560954969","t":"08:45","avg":3.72,"tier":"B","dup":false,"r":[4,4,3,4,4,4,4,2,4,4,4,4,4,3,4,4,4,3]},{"n":"Kalpak Dasgupta","p":"8130617226","t":"08:51","avg":3.0,"tier":"A","dup":false,"r":[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]},{"n":"Pankaj Sharma","p":"9953242487","t":"08:54","avg":3.83,"tier":"C","dup":false,"r":[4,4,4,4,3,4,3,3,4,4,4,4,4,4,4,4,4,4]},{"n":"Dr. Sachin Gupta","p":"7042216951","t":"08:56","avg":3.67,"tier":"C","dup":false,"r":[4,4,3,4,4,3,3,4,3,4,3,4,4,4,3,4,4,4]},{"n":"Savita","p":"9312621055","t":"08:58","avg":3.89,"tier":"C","dup":false,"r":[4,4,4,4,4,4,4,3,4,4,4,4,4,4,4,4,4,3]},{"n":"Sameer Gupta","p":"9650035383","t":"08:59","avg":3.78,"tier":"C","dup":false,"r":[4,4,4,4,4,4,4,3,4,4,4,4,3,3,3,4,4,4]},{"n":"Sanghamitra Bishoyee","p":"9908523564","t":"08:59","avg":3.78,"tier":"B","dup":false,"r":[3,3,2,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Sushank Bansal","p":"9214008273","t":"09:02","avg":2.72,"tier":"A","dup":false,"r":[3,3,2,2,3,3,3,2,2,3,3,3,3,3,3,3,3,2]},{"n":"Mahendra Pratap Singh","p":"9871173358","t":"09:04","avg":2.72,"tier":"A","dup":false,"r":[2,2,3,2,3,3,3,2,3,3,3,3,3,3,4,3,3,1]},{"n":"Robin Singh","p":"9711995928","t":"09:04","avg":3.94,"tier":"C","dup":false,"r":[4,4,4,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Kunal Jaiswal","p":"9205509677","t":"09:06","avg":3.78,"tier":"C","dup":false,"r":[3,4,3,3,4,4,4,4,4,3,4,4,4,4,4,4,4,4]},{"n":"Kulbir Pundir","p":"9910121302","t":"09:06","avg":3.33,"tier":"B","dup":false,"r":[3,4,2,3,3,4,3,4,2,4,3,4,3,4,3,3,4,4]},{"n":"Abhilasha Anand","p":"9740745184","t":"09:10","avg":3.72,"tier":"C","dup":false,"r":[3,4,3,3,4,4,4,4,3,4,4,4,4,3,4,4,4,4]},{"n":"Minaxi Bang","p":"8882544903","t":"09:14","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Neha Mishra","p":"9910970350","t":"09:14","avg":3.89,"tier":"C","dup":false,"r":[4,4,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Pushkar Singh","p":"9654920053","t":"09:15","avg":2.83,"tier":"A","dup":false,"r":[3,3,3,3,4,4,2,1,3,3,3,3,3,2,3,2,3,3]},{"n":"Ashwani K Singh","p":"7042971153","t":"09:18","avg":3.33,"tier":"B","dup":true,"r":[3,3,3,3,3,4,4,4,4,3,4,4,3,2,2,3,4,4]},{"n":"Premshanker Sharma","p":"9891606760","t":"09:18","avg":3.56,"tier":"B","dup":false,"r":[4,4,4,4,4,4,4,2,4,4,3,3,3,4,4,3,3,3]},{"n":"Sushil Kumar","p":"8130376879","t":"09:20","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Ajit Singh","p":"9739756463","t":"09:20","avg":2.83,"tier":"A","dup":true,"r":[1,1,1,1,4,4,4,4,4,4,4,1,4,4,1,2,3,4]},{"n":"Ashwani Kumar Singh","p":"7042971153","t":"09:23","avg":3.0,"tier":"A","dup":true,"r":[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]},{"n":"Laxmi Priya","p":"8295998584","t":"09:24","avg":3.72,"tier":"B","dup":false,"r":[3,3,2,4,4,4,3,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Ajay Kumar","p":"9818082303","t":"09:25","avg":3.94,"tier":"C","dup":false,"r":[4,4,4,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Gaurav","p":"8130337107","t":"09:27","avg":3.39,"tier":"B","dup":false,"r":[4,3,2,4,4,4,3,3,2,3,4,4,4,4,4,4,4,1]},{"n":"Shikha Yadav","p":"9354856443","t":"09:29","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Rupal Srivastava","p":"9911943874","t":"09:33","avg":3.11,"tier":"B","dup":false,"r":[3,3,3,3,4,2,3,4,4,2,3,3,4,3,2,3,4,3]},{"n":"Deepa","p":"9810356627","t":"09:38","avg":3.56,"tier":"C","dup":false,"r":[4,4,3,3,3,3,4,4,3,3,3,4,4,4,4,4,4,3]},{"n":"Munil Khiriya","p":"9718018300","t":"09:42","avg":3.83,"tier":"C","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,4,3,4]},{"n":"Suparna Gulati","p":"9717623397","t":"09:43","avg":3.11,"tier":"B","dup":false,"r":[4,4,2,2,3,2,3,3,2,3,3,3,4,3,3,4,4,4]},{"n":"Neeraj Tehlan","p":"9711019211","t":"09:45","avg":3.94,"tier":"C","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3]},{"n":"Sandhya Yadav","p":"9870204450","t":"09:45","avg":3.83,"tier":"B","dup":false,"r":[4,4,4,4,4,4,4,4,1,4,4,4,4,4,4,4,4,4]},{"n":"Sweeti","p":"9599962844","t":"09:49","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Hament Kumar","p":"9910504267","t":"09:49","avg":3.89,"tier":"C","dup":false,"r":[4,4,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Nitin Tokas","p":"9891235213","t":"09:49","avg":3.22,"tier":"B","dup":false,"r":[4,4,3,4,3,3,3,4,4,3,2,3,3,3,3,3,3,3]},{"n":"Sakshi Saraswat","p":"8800860370","t":"09:49","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Neha & Himanshu Jain","p":"8178803483","t":"09:52","avg":3.72,"tier":"B","dup":false,"r":[4,3,3,2,4,4,4,4,3,4,4,4,4,4,4,4,4,4]},{"n":"Shivani Malik","p":"9350588450","t":"09:54","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Pranay Dixit","p":"9725038845","t":"09:56","avg":3.44,"tier":"B","dup":false,"r":[4,4,2,4,4,4,4,4,2,2,3,3,4,4,4,4,4,2]},{"n":"Abhishek Sharma","p":"9999886709","t":"09:56","avg":3.11,"tier":"B","dup":false,"r":[3,3,3,3,4,4,4,2,3,3,3,3,3,3,3,3,3,3]},{"n":"Shailesh Verma","p":"8882331338","t":"09:57","avg":3.0,"tier":"A","dup":false,"r":[4,3,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]},{"n":"Puja Srivastava","p":"7667558541","t":"09:57","avg":3.5,"tier":"B","dup":false,"r":[3,3,3,2,3,3,4,3,3,4,4,4,4,4,4,4,4,4]},{"n":"Shashi Yadav","p":"8510078178","t":"09:58","avg":3.94,"tier":"C","dup":false,"r":[4,4,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Anvika","p":"7888355247","t":"10:00","avg":3.39,"tier":"B","dup":false,"r":[4,4,4,4,3,3,3,2,3,3,3,4,3,3,4,4,4,3]},{"n":"Alpana Sharma","p":"7665836499","t":"10:01","avg":3.22,"tier":"C","dup":false,"r":[3,3,3,3,3,4,3,3,4,3,3,3,4,3,4,3,3,3]},{"n":"Meenu","p":"9811406612","t":"10:01","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Jai Pal Saini","p":"8882705990","t":"10:04","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Paramjit Singh Kochar","p":"9818232405","t":"10:06","avg":2.94,"tier":"A","dup":false,"r":[3,3,3,3,3,3,3,3,3,3,3,3,3,2,3,3,3,3]},{"n":"Meghna","p":"8800133666","t":"10:07","avg":2.89,"tier":"A","dup":false,"r":[3,3,3,3,3,3,3,2,3,3,3,3,3,3,3,3,3,2]},{"n":"Manju Kumari","p":"8586863204","t":"10:07","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Shailesh","p":"8218920401","t":"10:13","avg":3.56,"tier":"B","dup":false,"r":[4,4,4,4,3,4,4,4,2,4,4,4,4,2,3,3,3,4]},{"n":"Rupali","p":"7701903954","t":"10:13","avg":3.44,"tier":"C","dup":false,"r":[3,3,3,3,4,4,4,3,3,3,3,3,4,4,4,4,4,3]},{"n":"Ajit Singh","p":"9739756463","t":"10:14","avg":3.5,"tier":"B","dup":true,"r":[4,4,4,4,4,4,4,4,4,4,4,4,2,3,2,1,3,4]},{"n":"Priyanka","p":"8826833455","t":"10:16","avg":3.67,"tier":"C","dup":false,"r":[4,4,3,3,4,3,4,3,3,4,3,4,4,4,4,4,4,4]},{"n":"Niresh Mehta","p":"9990799549","t":"10:19","avg":3.0,"tier":"A","dup":false,"r":[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]},{"n":"Yogender Singh","p":"8901316394","t":"10:20","avg":3.67,"tier":"C","dup":false,"r":[3,3,3,3,4,4,4,4,4,4,4,4,4,4,3,3,4,4]},{"n":"Rajesh Krishnan","p":"8089422218","t":"10:22","avg":3.22,"tier":"C","dup":false,"r":[4,3,3,3,3,3,3,3,4,4,3,4,3,3,3,3,3,3]},{"n":"Sunny Saroha","p":"9015445801","t":"10:24","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Rini Banga Nag","p":"9911090081","t":"10:24","avg":3.89,"tier":"C","dup":false,"r":[4,4,4,3,4,4,4,4,4,4,4,4,4,4,3,4,4,4]},{"n":"Manvi Kohli","p":"9560553352","t":"10:28","avg":2.83,"tier":"A","dup":false,"r":[4,3,1,1,4,3,3,3,3,4,3,3,4,4,2,2,3,1]},{"n":"Rahul Gupta","p":"9899705622","t":"10:29","avg":3.56,"tier":"C","dup":true,"r":[4,4,3,3,3,4,3,3,3,4,4,4,3,4,3,4,4,4]},{"n":"Ankita Jain","p":"9811644727","t":"10:32","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Suraj Dhankar","p":"7428247438","t":"10:32","avg":3.78,"tier":"C","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3]},{"n":"Tarun Goel","p":"9962203332","t":"10:39","avg":1.83,"tier":"A","dup":false,"r":[2,1,2,1,2,3,1,3,2,2,1,3,1,1,2,1,1,4]},{"n":"Mushtaq Ahmad","p":"9871819900","t":"10:42","avg":2.61,"tier":"A","dup":false,"r":[2,1,1,2,3,4,4,3,3,3,3,3,3,3,2,3,2,2]},{"n":"Yogesh Sharma","p":"7289085790","t":"10:48","avg":3.39,"tier":"B","dup":false,"r":[2,4,3,4,4,4,4,4,3,4,3,4,3,4,3,4,3,1]},{"n":"Ravi Sompura","p":"9833404305","t":"10:48","avg":3.78,"tier":"C","dup":false,"r":[4,3,4,4,4,4,4,3,4,4,4,4,4,3,4,4,4,3]},{"n":"Amit","p":"9958839124","t":"10:50","avg":3.22,"tier":"B","dup":false,"r":[4,4,1,1,4,2,4,2,4,4,4,4,4,2,4,4,3,3]},{"n":"Anubhav","p":"8826299757","t":"10:52","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Rashmi","p":"7838523771","t":"10:53","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Praveen Kumar","p":"9821711328","t":"10:54","avg":3.89,"tier":"C","dup":true,"r":[4,4,4,4,4,4,4,4,3,4,4,4,4,3,4,4,4,4]},{"n":"Shradha Tandon","p":"8800599688","t":"10:55","avg":3.72,"tier":"B","dup":false,"r":[4,4,1,2,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Rahul Gupta","p":"9899705622","t":"10:56","avg":3.61,"tier":"C","dup":true,"r":[4,4,3,3,4,4,3,4,3,4,4,4,3,4,3,3,4,4]},{"n":"Vinita Yadav","p":"9871753718","t":"10:57","avg":4.0,"tier":"D","dup":true,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Sonia Sheoran","p":"8570859191","t":"10:58","avg":3.61,"tier":"B","dup":false,"r":[4,3,4,3,2,4,4,4,4,3,4,4,4,3,4,4,4,3]},{"n":"Vivek Sood","p":"9630005077","t":"10:58","avg":2.89,"tier":"A","dup":false,"r":[3,3,3,3,3,4,3,3,2,2,3,3,3,3,3,3,3,2]},{"n":"Rahul Gupta","p":"8010255209","t":"10:59","avg":3.11,"tier":"B","dup":false,"r":[4,4,1,1,3,3,3,4,3,3,1,3,3,4,4,4,4,4]},{"n":"Mohit Kumra","p":"8527411004","t":"11:00","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Ashish Mittal","p":"9999515618","t":"11:03","avg":3.56,"tier":"C","dup":false,"r":[4,3,3,4,4,4,4,4,3,3,3,4,4,3,3,4,3,4]},{"n":"Karan Pushkarna","p":"8447501880","t":"11:04","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Deepika Sharma","p":"9988798049","t":"11:05","avg":3.89,"tier":"C","dup":false,"r":[4,4,4,4,3,4,4,4,4,4,4,4,4,4,4,4,4,3]},{"n":"Vinita Yadav","p":"9871753718","t":"11:09","avg":4.0,"tier":"D","dup":true,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Gunjan","p":"9720423001","t":"11:10","avg":3.89,"tier":"C","dup":false,"r":[4,4,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Priyanka","p":"9521601131","t":"11:12","avg":3.67,"tier":"B","dup":false,"r":[4,4,2,4,4,3,4,4,4,3,4,4,4,4,2,4,4,4]},{"n":"Nida","p":"9936715287","t":"11:14","avg":3.0,"tier":"A","dup":false,"r":[3,3,4,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3]},{"n":"Manish Kumar Saini","p":"7838427104","t":"11:14","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Ankit Maru","p":"9001998257","t":"11:15","avg":3.28,"tier":"C","dup":false,"r":[3,3,3,3,4,4,3,4,3,3,3,3,3,3,3,4,4,3]},{"n":"Jagvijai Singh Rawat","p":"9811848445","t":"11:22","avg":3.39,"tier":"B","dup":false,"r":[4,3,4,3,4,4,4,3,3,3,3,4,4,3,3,3,4,2]},{"n":"Jyoti Raghav","p":"9582211440","t":"11:23","avg":2.67,"tier":"A","dup":false,"r":[4,4,4,4,1,4,1,1,4,4,4,4,1,1,4,1,1,1]},{"n":"Praveen Kumar","p":"9821711328","t":"11:26","avg":3.94,"tier":"C","dup":true,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,3,4,4,4,4]},{"n":"Gaurav Jain","p":"9599248299","t":"11:26","avg":3.39,"tier":"B","dup":false,"r":[4,3,2,3,4,4,4,3,3,3,4,3,3,4,4,4,3,3]},{"n":"Dev Gupta","p":"9999599909","t":"11:30","avg":2.28,"tier":"A","dup":false,"r":[4,4,1,4,3,3,3,1,3,2,2,1,2,2,1,1,3,1]},{"n":"Vaibhav Singhal","p":"9718173708","t":"11:30","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Anchal Yadav","p":"7503317559","t":"11:31","avg":3.22,"tier":"C","dup":false,"r":[3,4,3,3,4,4,4,3,3,3,3,3,3,3,3,3,3,3]},{"n":"Sachin Singh Rawat","p":"9910694946","t":"11:39","avg":3.72,"tier":"C","dup":false,"r":[4,4,3,4,4,4,4,3,3,4,4,4,4,3,4,3,4,4]},{"n":"Rohitash Pahuja","p":"9911372879","t":"11:40","avg":2.5,"tier":"A","dup":false,"r":[2,2,1,2,3,4,3,2,2,3,2,3,3,3,2,3,3,2]},{"n":"Swasti Kaushik","p":"9870470719","t":"11:43","avg":3.67,"tier":"C","dup":false,"r":[4,4,3,3,4,3,4,4,3,3,3,4,4,4,4,4,4,4]},{"n":"Garima","p":"8171572333","t":"11:50","avg":3.89,"tier":"C","dup":false,"r":[3,4,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Rahul Parashar","p":"9711054188","t":"11:52","avg":3.61,"tier":"B","dup":false,"r":[4,4,2,2,4,2,4,4,4,4,4,4,4,4,4,4,4,3]},{"n":"Aavvee Srivastava","p":"9266604341","t":"11:55","avg":3.89,"tier":"C","dup":false,"r":[4,4,4,4,4,4,4,3,4,4,4,4,4,4,4,4,4,3]},{"n":"Varun Narula","p":"8826488772","t":"11:56","avg":3.78,"tier":"C","dup":false,"r":[4,4,3,3,4,4,4,3,4,4,4,4,4,3,4,4,4,4]},{"n":"Sourabh Aggarwal","p":"9811580465","t":"11:59","avg":3.17,"tier":"B","dup":false,"r":[3,3,2,3,3,3,4,3,3,4,4,3,3,3,4,3,3,3]},{"n":"Prerna","p":"9671681360","t":"12:01","avg":2.67,"tier":"A","dup":false,"r":[3,3,2,2,3,3,3,2,2,2,3,3,3,2,3,3,3,3]},{"n":"Rupali Sharma","p":"7428099052","t":"12:02","avg":3.0,"tier":"A","dup":false,"r":[3,3,4,4,3,2,4,2,3,4,4,2,3,1,3,3,3,3]},{"n":"Nitesh","p":"9313234224","t":"12:10","avg":3.83,"tier":"C","dup":false,"r":[4,4,4,3,4,4,4,4,3,4,4,4,4,4,4,4,4,3]},{"n":"Pratima","p":"9999360191","t":"12:12","avg":3.28,"tier":"B","dup":true,"r":[4,3,2,3,3,4,4,4,2,4,4,2,3,3,3,4,3,4]},{"n":"Hina","p":"8894689499","t":"12:17","avg":3.5,"tier":"B","dup":false,"r":[3,4,3,2,4,4,3,4,3,4,4,4,4,3,3,4,4,3]},{"n":"Pavaki Bhadoria","p":"9310072083","t":"12:25","avg":3.28,"tier":"B","dup":false,"r":[4,3,3,3,3,3,4,4,4,3,3,3,3,2,3,4,3,4]},{"n":"Beena","p":"8802360383","t":"12:27","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Pratima","p":"9999360191","t":"12:28","avg":3.39,"tier":"B","dup":true,"r":[3,2,3,3,4,4,4,4,3,4,3,3,3,4,3,3,4,4]},{"n":"Ila Bhardwaj","p":"8527227693","t":"12:29","avg":3.61,"tier":"B","dup":false,"r":[4,4,1,1,4,4,4,3,4,4,4,4,4,4,4,4,4,4]},{"n":"Karan Khurana","p":"8296660666","t":"12:44","avg":4.0,"tier":"D","dup":false,"r":[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]},{"n":"Reena","p":"9053107574","t":"12:44","avg":3.78,"tier":"C","dup":false,"r":[4,4,3,3,3,4,4,4,3,4,4,4,4,4,4,4,4,4]},{"n":"Meenakshi Tomar","p":"9818001944","t":"12:49","avg":3.33,"tier":"C","dup":false,"r":[4,3,4,3,3,3,3,3,4,4,4,3,3,3,3,3,4,3]},{"n":"Varsha Sharma","p":"9784616059","t":"12:56","avg":3.67,"tier":"B","dup":false,"r":[3,4,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,1]},{"n":"Tarun Kumar Chauhan","p":"7828782878","t":"13:03","avg":3.5,"tier":"B","dup":false,"r":[4,4,4,4,4,4,4,4,3,3,3,3,3,3,2,4,4,3]},{"n":"Namit Kumar","p":"9560547941","t":"14:03","avg":3.61,"tier":"B","dup":false,"r":[4,4,3,3,4,2,4,3,4,4,4,4,4,4,4,3,4,3]}],"short":["Curriculum & syllabus","Books & resources","International collaborations","Learning apps","Infrastructure","Cleanliness & hygiene","Security & child safety","Transport","Sports","Cultural activities","Creativity & participation","Overall environment","Administrative support","ERP / Parent App","Communication","Responsiveness to queries","Staff support","Uniform arrangements"],"groups":["Academics","Academics","Academics","Academics","Campus & safety","Campus & safety","Campus & safety","Campus & safety","Co-curricular","Co-curricular","Co-curricular","Co-curricular","Administration & communication","Administration & communication","Administration & communication","Administration & communication","Administration & communication","Administration & communication"],"gm":{"Academics":3.4,"Campus & safety":3.61,"Co-curricular":3.56,"Administration & communication":3.52}};
+const S=D.short,$=s=>document.querySelector(s);
+// chart
+const ch=$('#chart');let h='<div class="hd lab">Area</div><div class="hd">Share of 118 parents</div><div class="hd">Avg</div>';
+[...D.areas].sort((a,b)=>a.avg-b.avg).forEach(a=>{
+  h+=`<div class="lab">${a.name}</div><div class="bar">`+a.c.map((n,i)=>n?`<div class="s${i+1}" style="flex:${n} 0 0" data-t="${a.name}: ${n} parent${n>1?'s':''} (${Math.round(n/1.18)}%) rated ${i+1}">${n>=5?n:''}</div>`:'').join('')+`</div><div class="avg">${a.avg.toFixed(2)}</div>`});
+ch.innerHTML=h;
+const tip=$('#tip');
+ch.addEventListener('mousemove',e=>{const t=e.target.dataset.t;if(!t){tip.hidden=true;return}tip.textContent=t;tip.hidden=false;tip.style.left=Math.min(e.clientX+12,innerWidth-250)+'px';tip.style.top=(e.clientY+14)+'px'});
+ch.addEventListener('mouseleave',()=>tip.hidden=true);
+// table
+const TN={A:'Priority 1',B:'Priority 2',C:'Priority 3'},TD={A:'average 3.0 or below',B:'at least one 1 or 2',C:'only 3s, no 1 or 2'};
+const P=D.parents.filter(p=>p.tier!='D').sort((a,b)=>a.tier.localeCompare(b.tier)||a.avg-b.avg);
+let tier='all';
+const cnt=t=>P.filter(p=>t=='all'||p.tier==t).length;
+$('#tabs').innerHTML=[['all','All']].concat(Object.entries(TN)).map(([k,v])=>`<button type="button" data-k="${k}" aria-pressed="${k=='all'}">${v}${TD[k]?' · '+TD[k]:''} (${cnt(k)})</button>`).join('');
+$('#area').innerHTML='<option value="-1">All areas</option>'+S.map((s,i)=>`<option value="${i}">${s}</option>`).join('');
+let rows=[];
+function draw(){
+  const q=$('#q').value.trim().toLowerCase(),ai=+$('#area').value,lv=+$('#lvl').value;
+  rows=P.filter(p=>(tier=='all'||p.tier==tier)&&(!q||p.n.toLowerCase().includes(q)||p.p.includes(q))&&(ai<0||p.r[ai]<=lv));
+  $('#tb').innerHTML=rows.map((p,i)=>{
+    const lo=p.r.map((v,j)=>v<=2?`<span class="chip lo">${S[j]} <b>${v}</b></span>`:'').join('')||'<span class="dim">None</span>';
+    const n3=p.r.filter(v=>v==3).length;
+    const th=n3==18?'<span class="dim">All 18 areas</span>':p.r.map((v,j)=>v==3?`<span class="chip">${S[j]}</span>`:'').join('')||'<span class="dim">None</span>';
+    return `<tr><td class="num">${i+1}</td><td><b>${p.n}</b>${p.dup?'<div class="dim">Submitted twice · '+p.t+'</div>':''}</td><td class="num">${p.p}</td><td><span class="pill P${'ABC'.indexOf(p.tier)+1}">${TN[p.tier]}</span></td><td class="num">${p.avg.toFixed(2)}</td><td>${lo}</td><td>${th}</td></tr>`}).join('')||'<tr><td colspan="7" class="dim">No parents match these filters.</td></tr>';
+  $('#count').textContent=rows.length+' parent'+(rows.length==1?'':'s')+' shown';
+}
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;tier=b.dataset.k;document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-pressed',x==b));draw()});
+['q','area','lvl'].forEach(i=>$('#'+i).addEventListener('input',draw));
+$('#copy').addEventListener('click',()=>{
+  const t=['Parent\tPhone\tPriority\tAverage\tRated 1 or 2\tRated 3'].concat(rows.map(p=>[p.n,p.p,TN[p.tier],p.avg.toFixed(2),p.r.map((v,j)=>v<=2?S[j]+' ('+v+')':'').filter(Boolean).join('; '),p.r.map((v,j)=>v==3?S[j]:'').filter(Boolean).join('; ')].join('\t'))).join('\n');
+  const b=$('#copy');navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied '+rows.length+' rows';setTimeout(()=>b.textContent='Copy list for Excel',2000)}).catch(()=>{b.textContent='Copy not allowed here'});
+});
+draw();
+</script>
+
+</body></html>
